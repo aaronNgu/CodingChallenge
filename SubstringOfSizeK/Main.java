@@ -2,7 +2,7 @@ import java.util.*;
 
 // Given a string s and an int k, return all unique substrings of s of size k with k distinct characters.
 public class Main {
-    static String[] func(String s, int k) {
+    static String[] funx(String s, int k) {
         Set<Character> window = new HashSet<Character>();
         Set<String> result = new HashSet<String>();
         for (int start = 0, end = 0; end < s.length(); end++) {
@@ -13,6 +13,23 @@ public class Main {
 
             window.add(s.charAt(end));
 
+            if (window.size() == k) {
+                result.add(s.substring(start, end+1));
+                window.remove(s.charAt(start));
+                start++;
+            }
+        }
+        return result.toArray(new String[result.size()]);
+    }
+
+    static String[] func(String s, int k) {
+        Set<Character> window = new HashSet<Character>();
+        Set<String> result = new HashSet<String>();
+        for (int start = 0, end = 0; end < s.length(); end++) {
+            for(; window.contains(s.charAt(end)); start++) {
+                window.remove(s.charAt(start));
+            }
+            window.add(s.charAt(end));
             if (window.size() == k) {
                 result.add(s.substring(start, end+1));
                 window.remove(s.charAt(start));
@@ -33,12 +50,12 @@ public class Main {
         String[] result;
         for (int i = 0; i < inputString.length; i++) {
             result = func(inputString[i], inputSize[i]);
-            System.out.println(Arrays.toString(result));
-            System.out.println(Arrays.toString(expected.get(i)));
 
             // Arrays.sort sorts in place does not return anything
             Arrays.sort(result);
             Arrays.sort(expected.get(i));
+            System.out.println(Arrays.toString(result));
+            System.out.println(Arrays.toString(expected.get(i)));
             System.out.println(Arrays.equals(result, expected.get(i)));
         }
     }
