@@ -22,11 +22,28 @@ public class Main {
         return result.toArray(new String[result.size()]);
     }
 
-    static String[] func(String s, int k) {
+    static String[] funy(String s, int k) {
         Set<Character> window = new HashSet<Character>();
         Set<String> result = new HashSet<String>();
         for (int start = 0, end = 0; end < s.length(); end++) {
             for(; window.contains(s.charAt(end)); start++) {
+                window.remove(s.charAt(start));
+            }
+            window.add(s.charAt(end));
+            if (window.size() == k) {
+                result.add(s.substring(start, end+1));
+                window.remove(s.charAt(start));
+                start++;
+            }
+        }
+        return result.toArray(new String[result.size()]);
+    }
+
+    static String[] func(String s, int k) {
+        Set<Character> window = new HashSet<Character>();
+        Set<String> result = new HashSet<String>();
+        for (int start = 0, end = 0; end < s.length(); end++){
+            for(; window.contains(s.charAt(end)); start++){
                 window.remove(s.charAt(start));
             }
             window.add(s.charAt(end));
