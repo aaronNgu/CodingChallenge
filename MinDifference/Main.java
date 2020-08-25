@@ -1,5 +1,5 @@
 public class Main {
-    public static int mindiff(int[] load) {
+    public static int mindifff(int[] load) {
         int sum = 0, len, diff, i, j, actualSum;
         for (i = 0; i < load.length; i++) 
            sum += load[i]; 
@@ -35,6 +35,27 @@ public class Main {
         System.out.println("serverOne : " + serverOne);
         System.out.println("serverTwo : " + serverTwo);
         return Math.abs(serverOne - serverTwo);
+    }
+
+    public static int mindiff(int[] load) {
+        int sum = 0, h, ld;
+        for (int i: load)
+            sum += i;
+        
+        int half = sum/2;        
+        int[][] table = new int[load.length+1][half+1];
+        for(ld = 0; ld <= load.length; ld++) {
+            for(h = 0; h <= half; h++) {
+                if (h == 0 || ld ==0) {
+                    table[ld][h] = 0;
+                } else if (h >= load[ld-1] && h - load[ld-1] >= 0) {
+                    table[ld][h] = Math.max(table[ld-1][h], load[ld-1] + table[ld][h - load[ld-1]]);
+                } else {
+                    table[ld][h] = table[ld-1][h];
+                }
+            }
+        }
+        return (sum - table[load.length][half]) - table[load.length][half];
     }
 
     public static void main(String[] args) {
