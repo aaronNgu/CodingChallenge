@@ -75,7 +75,7 @@ public class Main {
         return res;
     }
 
-    static int[] func(String a, String b) {
+    static int[] funz(String a, String b) {
         String[] strsA = a.split(","), strsB = b.split(",");
         int lenA = strsA.length, lenB = strsB.length;
         int[] res = new int[lenB];
@@ -107,6 +107,41 @@ public class Main {
             res[i] = (freqs[freq] - 1 > 0) ? freqs[freq - 1] : 0;
         }
 
+        return res;
+    }
+
+    public static int[] func(String a, String b) {
+        String[] strA = a.split(","), strB = b.split(",");
+        int lenA = strA.length, lenB = strB.length;
+        int[] res = new int[lenB];
+        int[] freqs = new int[11];
+
+        for(String s : strA) {
+            int[] count = new int[26];
+            int minIdx = 26;
+            for (char c: s.toCharArray()) {
+                ++count[c-'a'];
+                minIdx = Math.min(minIdx, c - 'a');
+            }
+            int freq = count[minIdx];
+            freqs[freq]++;
+        } 
+
+        for(int i = 1; i < freqs.length; i++) 
+            freqs[i] += freqs[i-1];
+        
+        for(int i = 0; i < lenB; i++) {
+            String s = strB[i];
+            int[] count = new int[26];
+            int minIdx = 26;
+            for (char c: s.toCharArray()) {
+                ++count[c-'a'];
+                minIdx = Math.min(minIdx, c - 'a');
+            }
+            int freq = count[minIdx];
+            int temp  = freqs[freq-1] > 0 ? freqs[freq-1] : 0;
+            res[i] = temp;
+        }
         return res;
     }
 
