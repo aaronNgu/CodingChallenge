@@ -2,7 +2,7 @@ package MinDifference;
 
 public class Main {
     public static int mindifff(int[] load) {
-        int sum = 0, len, diff, i, j, actualSum;
+        int sum = 0, len, i, j, actualSum;
         for (i = 0; i < load.length; i++) 
            sum += load[i]; 
         

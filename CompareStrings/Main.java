@@ -6,7 +6,7 @@ public class Main {
     // sample solution 
     static int[] funx(String A, String B) {
         String[] strsA = A.split(","), strsB = B.split(",");
-        int lenA = strsA.length, lenB = strsB.length;
+        int lenB = strsB.length;
         int[] res = new int[lenB];
         int[] freqs = new int[11];
         
