@@ -30,6 +30,10 @@ public class Main {
     public static void main(String[] args) {
         int[] s1 = {1, 2, 6, 5, 3};
         int[] e1 = {5, 5, 7, 6, 8};
+        /*
+        1 2 4(max 3 here) 5 6 
+        5 5 6 7 8 
+        */
         int expected = 3;
         int result = func(s1, e1);
         System.out.println(result);
@@ -38,8 +42,8 @@ public class Main {
         int[] s2 = {1, 2, 9, 5, 5};
         int[] e2 = {4, 5, 12, 9, 12};
         /*
-        1 2 5 5  9 
-        4 5 9 12 12 
+        1 2 5 5(max 3 here)  9 
+        4 5(or max 2 here) 9 12 12 
         */
         expected = 2;
         result = func(s2, e2);
