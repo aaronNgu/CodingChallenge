@@ -1,3 +1,5 @@
+package CompareStrings;
+
 import java.util.Arrays;
 
 public class Main {

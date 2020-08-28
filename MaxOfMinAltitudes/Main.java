@@ -1,4 +1,6 @@
-public class Main{
+package MaxOfMinAltitudes;
+
+public class Main {
     static int func(int[][] input) {
         int width = input[0].length, height = input.length, above, left, result;
         result = 0;

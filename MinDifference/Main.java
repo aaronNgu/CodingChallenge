@@ -1,3 +1,5 @@
+package MinDifference;
+
 public class Main {
     public static int mindifff(int[] load) {
         int sum = 0, len, diff, i, j, actualSum;

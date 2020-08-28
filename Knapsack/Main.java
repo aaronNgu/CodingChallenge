@@ -1,3 +1,5 @@
+package Knapsack;
+
 public class Main {
 
     static int dp(int[] weights, int[] value, int cap) {

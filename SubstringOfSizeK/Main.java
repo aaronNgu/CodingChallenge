@@ -1,3 +1,5 @@
+package SubstringOfSizeK;
+
 import java.util.*;
 
 // Given a string s and an int k, return all unique substrings of s of size k with k distinct characters.

@@ -1,3 +1,5 @@
+package MaxTime;
+
 public class Main {
     static String maxtime(String s) {
         char[] time = s.toCharArray();

@@ -1,3 +1,5 @@
+package MostBookedHotelRoom;
+
 public class Main {
     public static String mostbooked(String[] floors) {
         int[] map = new int[260];
