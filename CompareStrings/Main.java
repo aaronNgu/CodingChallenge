@@ -47,7 +47,7 @@ public class Main {
     // My solution
     static int[] funy(String A, String B) {
         String[] strA = A.split(","), strB = B.split(",");
-        int lenA = strA.length, lenB = strB.length;
+        int  lenB = strB.length;
         int[] res = new int[lenB];
         int[] freqs = new int[11];
 
@@ -79,7 +79,7 @@ public class Main {
 
     static int[] funz(String a, String b) {
         String[] strsA = a.split(","), strsB = b.split(",");
-        int lenA = strsA.length, lenB = strsB.length;
+        int  lenB = strsB.length;
         int[] res = new int[lenB];
         int[] freqs = new int[11];
     
@@ -114,7 +114,7 @@ public class Main {
 
     public static int[] func(String a, String b) {
         String[] strA = a.split(","), strB = b.split(",");
-        int lenA = strA.length, lenB = strB.length;
+        int  lenB = strB.length;
         int[] res = new int[lenB];
         int[] freqs = new int[11];
 
