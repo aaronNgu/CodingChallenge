@@ -44,9 +44,10 @@ public class Main {
         while (start < end) {
             int mid = (start + end) >> 1;
             if (array[mid] <= target) {
-                // go right 
+                // go right - start is inclusive
                 start = mid + 1;
             } else {
+                // end is exclusive
                 end = mid; 
             } 
         }
