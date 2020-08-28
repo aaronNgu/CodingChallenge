@@ -25,7 +25,31 @@ public class Main {
         System.out.println(result == expected);
     }
 
-    static int func(int[] arr){
-        return 0;
+    static int func(int[] nums){
+        int[] dp = new int[nums.length];
+        int result = 0;
+        for (int n : nums) {
+            int i = binarySearch(dp, 0, result, n);
+            if (i < 0) 
+                i = - (i + 1);
+            dp[i] = n;
+            if (result == i)
+                result++;
+        }
+        return result;
+    }
+
+    // returns index of the smallest value that is greater than target
+    static int binarySearch(int[] array, int start, int end, int target) {
+        while (start < end) {
+            int mid = (start + end) >> 1;
+            if (array[mid] <= target) {
+                // go right 
+                start = mid + 1;
+            } else {
+                end = mid; 
+            } 
+        }
+        return start;
     }
 }
