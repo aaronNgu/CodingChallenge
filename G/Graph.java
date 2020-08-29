@@ -1,3 +1,5 @@
+package G;
+
 interface Graph {
     public void add_edges(String src, String dst);
     public void add_vertex(String node);
