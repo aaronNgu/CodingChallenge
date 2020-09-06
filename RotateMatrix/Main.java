@@ -1,9 +1,8 @@
-package FlippingMatrix;
+package RotateMatrix;
 import java.util.*;
-/* Flipping Matrix across main axis */
 
 public class Main {
-
+   
     public static void main(String[] args) {
         int[][] inputOne = new int[][]{{1,2,3},{4,5,6},{7,8,9}};
         /* 
@@ -11,11 +10,11 @@ public class Main {
         [4, 5, 6]
         [7, 8, 9]
 
-        [9, 6, 3]
-        [8, 5, 2]
         [7, 4, 1]
+        [8, 5, 2]
+        [9, 6, 3]
         */
-        int[][] expected = new int[][]{{9,6,3},{8,5,2},{7,4,1}};
+        int[][] expected = new int[][]{{7,4,1},{8,5,2},{9,6,3}};
         runTest(inputOne, expected);
 
         int[][] inputTwo = new int[][]{{1,2},{3,4}};
@@ -23,10 +22,10 @@ public class Main {
         [1,2]
         [3,4]
 
-        [4,2]
         [3,1]
+        [4,2]
         */
-        expected = new int[][]{{4,2},{3,1}};
+        expected = new int[][]{{3,1},{4,2}};
         runTest(inputTwo, expected);
 
         int[][] inputThree = new int[][]{{1,2,3,4,5},{1,2,3,4,5},{1,2,3,4,5},{1,2,3,4,5},{1,2,3,4,5}};
@@ -37,13 +36,13 @@ public class Main {
         [1, 2, 3, 4, 5]
         [1, 2, 3, 4, 5]
 
-        [5, 5, 5, 5, 5]
-        [4, 4, 4, 4, 4]
-        [3, 3, 3, 3, 3]
-        [2, 2, 2, 2, 2]
         [1, 1, 1, 1, 1]
+        [2, 2, 2, 2, 2]
+        [3, 3, 3, 3, 3]
+        [4, 4, 4, 4, 4]
+        [5, 5, 5, 5, 5]
         */
-        expected = new int[][]{{5,5,5,5,5},{4,4,4,4,4},{3,3,3,3,3},{2,2,2,2,2},{1,1,1,1,1}};
+        expected = new int[][]{{1,1,1,1,1},{2,2,2,2,2},{3,3,3,3,3},{4,4,4,4,4},{5,5,5,5,5}};
         runTest(inputThree, expected);
     }
 
@@ -60,14 +59,19 @@ public class Main {
     }
 
     public static int[][] func(int[][] input) {
-        int height = input.length, width = input[0].length;
-        for (int row = 0; row < height - 1; row++) {
-            for (int col = 0; col < width - 1 - row; col++) {
-                int temp = input[row][col];
-                input[row][col] = input[height - 1 - col][width - 1 - row];
-                input[height -  1 - col][width - 1 - row] = temp;
+        int len = input.length;
+        for (int layer= 0; layer < len/2; layer++) {
+            int first = layer;
+            int last = len - layer - 1;
+            for (int i = first; i < last; i++) {
+                int offset = i - first;
+                int temp = input[first][i];
+                input[first][i] = input[last - offset][first];
+                input[last - offset][first] = input[last][last - offset];
+                input[last][last-offset] = input[i][last];
+                input[i][last] = temp;
             }
         }
         return input;
-    }
+    } 
 }
