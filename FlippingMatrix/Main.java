@@ -1,5 +1,6 @@
 package FlippingMatrix;
 import java.util.*;
+/* Flipping Matrix across main axis */
 
 public class Main {
 
