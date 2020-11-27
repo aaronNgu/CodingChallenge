@@ -21,6 +21,38 @@ public class Main {
 
     static int func(int n, int[][] edges, int[][] newEdges) {
         PriorityQueue<int[]> q = new PriorityQueue<int[]>((a, b) -> a[2] - b[2]);
+        for (int[] e: edges) q.add(new int[]{e[0], e[1], 0});
+        for (int[] e: newEdges) q.add(e);
+        int[] parent = new int[n+1];
+        Arrays.fill(parent, -1);
+        int sum = 0;
+        while (!q.isEmpty()) {
+            int[] c = q.poll();
+            int u = c[0], v = c[1], w = c[2];
+            int up = find(u, parent), vp = find(v, parent);
+            if (up != vp) {
+                sum += w;
+                union(u, v, parent);
+            }
+        }
+        return sum;
+    }
+
+    static int find(int node, int[] parent) {
+        if (parent[node] < 0) return node;
+        int p = find(parent[node], parent);
+        parent[node] = p;
+        return p;
+    }
+
+    static void union(int u, int v, int[] parent) {
+        int up = find(u, parent);
+        int vp = find(v, parent);
+        parent[up] = vp;
+    }
+    /*
+    static int func(int n, int[][] edges, int[][] newEdges) {
+        PriorityQueue<int[]> q = new PriorityQueue<int[]>((a, b) -> a[2] - b[2]);
         for (int[] edge: edges) q.add(new int[]{edge[0], edge[1], 0});
         for (int[] newEdge: newEdges) q.add(newEdge);
         int sum = 0;
@@ -50,7 +82,6 @@ public class Main {
         int vp = find(v, parents);
         parents[up] = vp;
     }
-    /*
     static int func(int n, int[][] edges, int[][] newEdges) {
         PriorityQueue<int[]> q = new PriorityQueue<>((a, b) -> a[2] - b[2]);
 
