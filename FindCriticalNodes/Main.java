@@ -11,6 +11,13 @@ public class Main {
         List<Integer> result = func(graph, nodeNum);
         for (Integer n : result) System.out.println(n);
         System.out.println(result.toArray().toString().equals(new int[]{5,2,3}.toString()));
+
+        nodeNum = 5;
+        graph = new int[][]{{0, 1},{1, 2},{3, 1},{4, 1},{4, 3},{2, 0}};
+        time = 1;
+        result = func(graph, nodeNum);
+        for (Integer n : result) System.out.println(n); 
+        System.out.println(result.toArray().toString().equals(new int[]{1}.toString()));
     }
 
     public static List<Integer> func(int[][] graph, int nodeNum) {
@@ -20,7 +27,7 @@ public class Main {
             g.get(conn[0]).add(conn[1]);
             g.get(conn[1]).add(conn[0]);
         }
-        //for (Integer n : g.get(6)) System.out.println(n);
+        //for (Integer n : g.get(0)) System.out.println(n);
 
         List<Integer> result = new ArrayList<Integer>();
         int[] visitedAt = new int[nodeNum];
@@ -33,6 +40,9 @@ public class Main {
         if (visitedAt[i] != 0) return visitedAt[i];
         visitedAt[i] = time++;
         int min = Integer.MAX_VALUE;
+        // System.out.println("parent " + parent);
+        // System.out.println("node "+ i);
+        // for (Integer n : graph.get(i)) System.out.println(n);
         for (Integer n: graph.get(i)) {
             if (n == parent) continue;
             int minOfNeighbours = dfs(graph, visitedAt, n, i, result);
@@ -40,9 +50,13 @@ public class Main {
         }
 
         if (visitedAt[i] <= min && parent >= 0) {
+            System.out.println("got here");
             if (!result.contains(parent) && graph.get(parent).size() > 1) result.add(parent);
             if (!result.contains(i) && graph.get(i).size() > 1) result.add(i);
         }
+        // System.out.println("visited valu " + visitedAt[i]);
+        // System.out.println("min value " + min);
+        // System.out.println("return value " + Math.min(visitedAt[i], min)); 
         return Math.min(visitedAt[i], min);
     }
 }
